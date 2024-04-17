@@ -1,12 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
-/**
- *
- * @author ElPul
- */
+import java.util.ArrayList;
+
 public class Mochila {
-    
+
+    private ArrayList<Objeto> objetos;
+
+    public Mochila(ArrayList<Objeto> objetos) {
+        this.objetos = objetos;
+    }
+
+    public ArrayList<Objeto> getObjetos() {
+        return objetos;
+    }
+
+    public void setObjetos(ArrayList<Objeto> objetos) {
+        this.objetos = objetos;
+    }
+
 }
