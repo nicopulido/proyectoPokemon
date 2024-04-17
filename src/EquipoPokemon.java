@@ -46,4 +46,5 @@ public class EquipoPokemon {
 	public void Sacar_Pokemon() {}
 	
 	
+	
 }
