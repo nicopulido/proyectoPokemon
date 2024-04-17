@@ -17,4 +17,11 @@ public class Mochila {
         this.objetos = objetos;
     }
 
+    public void darObjetoPokemon() {
+    }
+
+    public void eliminarObjeto() {
+
+    }
+
 }
