@@ -66,6 +66,5 @@ public class Pokemon {
     public void setObjeto(Objeto objeto) {
         this.objeto = objeto;
     }
-    
 
 }
