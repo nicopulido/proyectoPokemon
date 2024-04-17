@@ -63,4 +63,5 @@ public class Caja {
 	
 	public void Mostrar_Pokemon() {}
 	public void Mover_Pokemon() {}
+	public void soltar_Pokemon() {}
 }
