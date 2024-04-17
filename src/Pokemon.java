@@ -7,8 +7,9 @@ public class Pokemon {
     private int nivel;
     private float altura;
     private float peso;
+    private Objeto objeto;
 
-    //para crear un pokemón completo
+    //para crear un pokemón completo sin objeto
     public Pokemon(String nombre, String tipo, int nivel, float altura, float peso) {
         this.nombre = nombre;
         this.tipo = tipo;
@@ -57,5 +58,14 @@ public class Pokemon {
     public void setPeso(float peso) {
         this.peso = peso;
     }
+
+    public Objeto getObjeto() {
+        return objeto;
+    }
+
+    public void setObjeto(Objeto objeto) {
+        this.objeto = objeto;
+    }
+    
 
 }
