@@ -17,6 +17,7 @@ public class Pokemon {
         this.peso = peso;
     }
 
+    //getters y setters
     public String getNombre() {
         return nombre;
     }
@@ -56,5 +57,5 @@ public class Pokemon {
     public void setPeso(float peso) {
         this.peso = peso;
     }
-    
+
 }
