@@ -45,10 +45,10 @@ public class EquipoPokemon {
     public void cambiar_Orden(ArrayList<Pokemon> Pokemones) {
     }
 
-    public void Agregar_Pokemon() {
+    public void agregar_Pokemon() {
     }
 
-    public void Sacar_Pokemon() {
+    public void sacar_Pokemon() {
     }
 
     public void quitarObjeto() {

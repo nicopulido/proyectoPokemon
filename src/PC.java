@@ -14,6 +14,9 @@ public class PC {
     private ArrayList<Caja> cajas;
     private ArrayList<Objeto> objetos;
     private Pokemon pokemonSeleccionado;
+    private Objeto objeto;
+    
+    
     //constructores
 
     public PC() {
@@ -35,15 +38,20 @@ public class PC {
 
     //netodos
     public void almacenar_Pokemon() {
+    	pokemonSeleccionado.setA(true);
     }
 
     public void eliminar_Pokemon() {
+    	pokemonSeleccionado.setA(false);
     }
 
-    public void almacenar_Objeto() {
+    public void almacenar_Objeto(Objeto objeto) {
+    	objetos.add(objeto);
     }
 
-    public void eliminar_Objeto() {
+    public void eliminar_Objeto(Objeto objeto) {
+    	objetos.remove(objeto);
+    	
     }
     
     
