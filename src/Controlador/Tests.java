@@ -58,11 +58,11 @@ public class Tests {
 
         System.out.println(caja.getPokemones().size());
         
-        for (int i = 0; i < 40; i++) {
-            caja.agregar_Pokemon(pikachu);
-        }
-
-        System.out.println(caja.getPokemones().size());
-
+        caja.agregar_Pokemon(pikachu, 0);
+        caja.agregar_Pokemon(pikachu, 1);
+        caja.agregar_Pokemon(pikachu, 1);
+        caja.agregar_Pokemon(pikachu, 4);
+        
+        System.out.println(caja.getPokemones());
     }
 }

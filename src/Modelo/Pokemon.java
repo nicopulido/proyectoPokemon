@@ -1,9 +1,5 @@
 package Modelo;
 
-
-import Modelo.Objeto;
-
-
 public class Pokemon {
 
     //aquí van los atributos
@@ -22,7 +18,7 @@ public class Pokemon {
         this.nivel = nivel;
         this.altura = altura;
         this.peso = peso;
-        this.a=a;
+        this.a = a;
     }
 
     //getters y setters
@@ -74,13 +70,20 @@ public class Pokemon {
         this.objeto = objeto;
     }
 
-	public boolean isA() {
-		return a;
-	}
+    public boolean isA() {
+        return a;
+    }
 
-	public void setA(boolean a) {
-		this.a = a;
-	}
-    
+    public void setA(boolean a) {
+        this.a = a;
+    }
+
+    //solo de prueba para ver los pokemones
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(nombre);
+        return sb.toString();
+    }
 
 }

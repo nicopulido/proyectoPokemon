@@ -5,7 +5,6 @@ package Modelo;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-import Modelo.Objeto;
 import java.util.ArrayList;
 
 /**

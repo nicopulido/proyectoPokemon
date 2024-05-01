@@ -20,6 +20,9 @@ public class Caja {
         this.fondo = fondo;
         this.num_Caja = num_Caja;
         this.pokemones = new ArrayList<Pokemon>(Caja.num_Espacios);
+        for (int i = 0; i < 30; i++) {
+            this.pokemones.add(null);
+        }
     }
 
     //Getter and Setter
@@ -63,15 +66,23 @@ public class Caja {
     public void Mostrar_Pokemon() {
     }
 
-    public void Mover_Pokemon(Pokemon pokemon1, Pokemon pokemon2) {
+    public void Mover_Pokemon_posicion(Pokemon pokemon1, int posicion) {
+        if (this.pokemones.size() < 30) {
 
+        }
     }
 
-    public void agregar_Pokemon(Pokemon pokemon) {
-        if (this.pokemones.size() < 30) {
-            this.pokemones.add(pokemon);
-        }else{
-            System.out.println("No se pueden agregar más pokemones MAX:30"); //mensaje provisional para los test
+    public void agregar_Pokemon(Pokemon pokemon, int posicion) {
+        if (posicion >= 0 && posicion <= pokemones.size()) {
+            if (pokemones.get(posicion) == null) {
+                // Si la posición está vacía, agregar el Pokémon en esa posición
+                pokemones.set(posicion, pokemon);
+                System.out.println("Se agregó el Pokémon en la posición " + posicion);
+            } else {
+                System.out.println("La posición " + posicion + " está ocupada por otro Pokémon.");
+            }
+        } else {
+            System.out.println("La posición especificada está fuera de los límites del ArrayList.");
         }
     }
 
