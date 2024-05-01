@@ -1,3 +1,8 @@
+package Modelo;
+
+
+import Modelo.Objeto;
+
 
 public class Pokemon {
 
