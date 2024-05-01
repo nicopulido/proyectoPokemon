@@ -1,33 +1,25 @@
 package Modelo;
 
-import .*;
+import java.util.ArrayList;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
-/**
- *
- * @author ElPul
- */
 public class Caja {
 
     //agregar los atributos
     private String fondo;
-    private int num_Espacios;
+    private static int num_Espacios = 30; //porque solamente pueden haber 30 espacios por caja
     private int num_Caja;
     private boolean espacio_Ocupado;
+    private ArrayList<Pokemon> pokemones;
 
     //constructores
     public Caja() {
     }
 
-    public Caja(String fondo, int num_Espacios, int num_Caja, boolean espacio_Ocupado) {
+    public Caja(String fondo, int num_Caja, boolean espacio_Ocupado) {
         this.espacio_Ocupado = espacio_Ocupado;
         this.fondo = fondo;
         this.num_Caja = num_Caja;
-        this.num_Espacios = num_Espacios;
+        this.pokemones = new ArrayList<Pokemon>(Caja.num_Espacios);
     }
 
     //Getter and Setter
@@ -41,10 +33,6 @@ public class Caja {
 
     public int getNum_Espacios() {
         return num_Espacios;
-    }
-
-    public void setNum_Espacios(int num_Espacios) {
-        this.num_Espacios = num_Espacios;
     }
 
     public int getNum_Caja() {
@@ -63,11 +51,28 @@ public class Caja {
         this.espacio_Ocupado = espacio_Ocupado;
     }
 
+    public ArrayList<Pokemon> getPokemones() {
+        return pokemones;
+    }
+
+    public void setPokemones(ArrayList<Pokemon> pokemones) {
+        this.pokemones = pokemones;
+    }
+
     //metodos
     public void Mostrar_Pokemon() {
     }
 
-    public void Mover_Pokemon() {
+    public void Mover_Pokemon(Pokemon pokemon1, Pokemon pokemon2) {
+
+    }
+
+    public void agregar_Pokemon(Pokemon pokemon) {
+        if (this.pokemones.size() < 30) {
+            this.pokemones.add(pokemon);
+        }else{
+            System.out.println("No se pueden agregar más pokemones MAX:30"); //mensaje provisional para los test
+        }
     }
 
     public void soltar_Pokemon() {
@@ -79,8 +84,8 @@ public class Caja {
     public void llevarPokemonEquipo() {
 
     }
-    
-    public void quitarObjetoPokemon(){
-        
+
+    public void quitarObjetoPokemon() {
+
     }
 }
