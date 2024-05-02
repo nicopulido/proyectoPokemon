@@ -106,7 +106,17 @@ public class EquipoPokemon {
         }
     }
 
-    public void sacar_Pokemon() {
+    public void soltar_Pokemon(int posicion) {
+        if (posicion >= 0 && posicion < this.pokemones.size()) {
+            if (this.pokemones.get(posicion) == null) {
+                System.out.println("No se puede liberar un pokemon de un espacio vacío");
+            } else {
+                this.pokemones.set(posicion, null);
+                System.out.println("Pokemon liberado");
+            }
+        } else {
+            System.out.println("La posición especificada está fuera de los límites del ArrayList.");
+        }
     }
 
     public void quitarObjeto(int posicion) {
