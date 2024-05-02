@@ -63,14 +63,14 @@ public class Caja {
         if (posicion_salida >= 0 && posicion_llegada >= 0 && posicion_llegada <= this.pokemones.size() && posicion_salida <= this.pokemones.size()) {
             if (this.pokemones.get(posicion_salida) == null) {
                 System.out.println("No hay ningun pokemón aquí");
-            }else if (posicion_llegada != posicion_salida) {
+            } else if (posicion_llegada != posicion_salida) {
                 this.pokemon_seleccionado = pokemones.get(posicion_salida);
                 System.out.println(this.pokemon_seleccionado);
                 pokemones.set(posicion_salida, null);
                 if (this.pokemones.get(posicion_llegada) != null) { //en ese if es para cambiar 2 pokemones de posicion
                     this.pokemones.set(posicion_salida, this.pokemones.get(posicion_llegada));
                     this.pokemones.set(posicion_llegada, this.pokemon_seleccionado);
-                }else{//este else es para cuando en la posicon de llegada no hay pokemones, y setea la posición de salida a null porque no se cambia ningún pokemong
+                } else {//este else es para cuando en la posicon de llegada no hay pokemones, y setea la posición de salida a null porque no se cambia ningún pokemong
                     this.pokemones.set(posicion_llegada, this.pokemon_seleccionado);
                     this.pokemones.set(posicion_salida, null);
                 }
@@ -95,7 +95,17 @@ public class Caja {
         }
     }
 
-    public void soltar_Pokemon() {
+    public void soltar_Pokemon(int posicion) {
+        if (posicion >= 0 && posicion <= this.pokemones.size()) {
+            if (this.pokemones.get(posicion) == null) {
+                System.out.println("No se puede liberar un pokemon de un espacio vacío");
+            } else {
+                this.pokemones.set(posicion, null);
+                System.out.println("Pokemon liberado");
+            }
+        } else {
+            System.out.println("La posición especificada está fuera de los límites del ArrayList.");
+        }
     }
 
     public void intercambiarPosicionPokemón() {

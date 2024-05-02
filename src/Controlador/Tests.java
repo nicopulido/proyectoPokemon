@@ -65,7 +65,10 @@ public class Tests {
         caja.agregar_Pokemon(alakazam, 10);
 
         System.out.println(caja.getPokemones());
-
+        
+        caja.soltar_Pokemon(0);
+        
+        System.out.println(caja.getPokemones());
         
         /* esto es para probar los cambios de posicon con el método de mover pokemon
         caja.mover_Pokemon_posicion(1, 3);
