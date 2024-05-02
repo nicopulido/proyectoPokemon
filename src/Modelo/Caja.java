@@ -82,7 +82,7 @@ public class Caja {
     }
 
     public void agregar_Pokemon(Pokemon pokemon, int posicion) {
-        if (posicion >= 0 && posicion <= this.pokemones.size()) {
+        if (posicion >= 0 && posicion < this.pokemones.size()) {
             if (this.pokemones.get(posicion) == null) {
                 // Si la posición está vacía, agregar el Pokémon en esa posición
                 this.pokemones.set(posicion, pokemon);
@@ -96,7 +96,7 @@ public class Caja {
     }
 
     public void soltar_Pokemon(int posicion) {
-        if (posicion >= 0 && posicion <= this.pokemones.size()) {
+        if (posicion >= 0 && posicion < this.pokemones.size()) {
             if (this.pokemones.get(posicion) == null) {
                 System.out.println("No se puede liberar un pokemon de un espacio vacío");
             } else {
@@ -116,6 +116,6 @@ public class Caja {
     }
 
     public void quitarObjetoPokemon() {
-
+        
     }
 }

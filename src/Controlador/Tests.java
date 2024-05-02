@@ -1,12 +1,15 @@
 package Controlador;
 
 import Modelo.Caja;
+import Modelo.EquipoPokemon;
+import Modelo.Objeto;
 import Modelo.Pokemon;
 
 public class Tests {
 
     public static void main(String[] args) {
         Caja caja = new Caja("AlgunFondo", 1);
+        EquipoPokemon equipo = new EquipoPokemon();
 
         //estas son instancias de prueba para pokemon
         Pokemon charmander = new Pokemon("Charmander", "Fuego", 14, 145, 56, true);
@@ -55,7 +58,43 @@ public class Tests {
         Pokemon mewtwo18 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
         Pokemon mewtwo19 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
         Pokemon mewtwo20 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
+        
+        //instancias de objetos
+        Objeto pokeball = new Objeto("Pokeball", "Una esfera utilizada para capturar Pokémon.");
+        Objeto poción = new Objeto("Poción", "Una poción que restaura algunos puntos de salud a un Pokémon.");
+        Objeto superpoción = new Objeto("Superpoción", "Una poción más fuerte que restaura más puntos de salud a un Pokémon.");
+        Objeto repelente = new Objeto("Repelente", "Un spray que repele Pokémon salvajes durante un tiempo limitado.");
+        Objeto revive = new Objeto("Revive", "Un medicamento que revive a un Pokémon desmayado y restaura parte de su salud.");
+        Objeto huevo = new Objeto("Huevo", "Un huevo misterioso que podría eclosionar en un Pokémon.");
+        Objeto baya = new Objeto("Baya", "Una baya sabrosa que puede ser comida por un Pokémon para restaurar algo de salud.");
+        Objeto piedra = new Objeto("Piedra", "Una piedra especial que puede inducir la evolución de ciertos Pokémon.");
 
+        System.out.println(equipo);
+
+        equipo.agregar_Pokemon(blastoise, 0);
+        equipo.agregar_Pokemon(bulbasaur, 1);
+        equipo.agregar_Pokemon(alakazam, 2);
+        equipo.agregar_Pokemon(dragonair, 3);
+        equipo.agregar_Pokemon(articuno, 4);
+        equipo.agregar_Pokemon(gengar, 5);
+        equipo.agregar_Pokemon(lapras, 6);
+        equipo.agregar_Pokemon(dratini, 0);
+
+        equipo.darObjetoPokemon(huevo, 5);
+
+        System.out.println(equipo.getPokemones());
+        System.out.println(equipo.getPokemones().get(5).getObjeto());
+        equipo.quitarObjeto(5);
+        System.out.println(equipo.getPokemones().get(5).getObjeto() + " " + equipo.getObjeto_seleccionado());
+        equipo.darObjetoPokemon(huevo, 5);
+        System.out.println(equipo.getPokemones().get(5).getObjeto());
+        equipo.darObjetoPokemon(baya, 5);
+        System.out.println(equipo.getPokemones().get(5).getObjeto());
+        equipo.darObjetoPokemon(piedra, 0);
+        System.out.println(equipo.getPokemones().get(0).getObjeto());
+        System.out.println(equipo);
+
+        /*
         System.out.println(caja.getPokemones().size());
 
         caja.agregar_Pokemon(pikachu, 0);
@@ -68,9 +107,9 @@ public class Tests {
         
         caja.soltar_Pokemon(0);
         
-        System.out.println(caja.getPokemones());
+        /// System.out.println(caja.getPokemones());   PARA PROBAR LA LIBERACIÓN DE POKEMONES EN LA CAJA
         
-        /* esto es para probar los cambios de posicon con el método de mover pokemon
+         esto es para probar los cambios de posicon con el método de mover pokemon
         caja.mover_Pokemon_posicion(1, 3);
         System.out.println(caja.getPokemones());
         caja.mover_Pokemon_posicion(0, 3);
@@ -79,6 +118,6 @@ public class Tests {
         System.out.println(caja.getPokemones());
         caja.mover_Pokemon_posicion(2, 3);
         System.out.println(caja.getPokemones());
-        */
+         */
     }
 }

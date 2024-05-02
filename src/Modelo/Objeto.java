@@ -29,4 +29,11 @@ public class Objeto {
         this.descripcion = descripcion;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(nombre);
+        return sb.toString();
+    }
+
 }
