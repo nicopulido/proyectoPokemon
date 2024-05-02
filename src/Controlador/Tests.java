@@ -58,7 +58,7 @@ public class Tests {
         Pokemon mewtwo18 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
         Pokemon mewtwo19 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
         Pokemon mewtwo20 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
-        
+
         //instancias de objetos
         Objeto pokeball = new Objeto("Pokeball", "Una esfera utilizada para capturar Pokémon.");
         Objeto poción = new Objeto("Poción", "Una poción que restaura algunos puntos de salud a un Pokémon.");
@@ -69,6 +69,7 @@ public class Tests {
         Objeto baya = new Objeto("Baya", "Una baya sabrosa que puede ser comida por un Pokémon para restaurar algo de salud.");
         Objeto piedra = new Objeto("Piedra", "Una piedra especial que puede inducir la evolución de ciertos Pokémon.");
 
+        /*
         System.out.println(equipo);
 
         equipo.agregar_Pokemon(blastoise, 0);
@@ -93,8 +94,8 @@ public class Tests {
         equipo.darObjetoPokemon(piedra, 0);
         System.out.println(equipo.getPokemones().get(0).getObjeto());
         System.out.println(equipo);
-
-        /*
+         */
+ /*
         System.out.println(caja.getPokemones().size());
 
         caja.agregar_Pokemon(pikachu, 0);
