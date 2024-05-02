@@ -6,7 +6,7 @@ import Modelo.Pokemon;
 public class Tests {
 
     public static void main(String[] args) {
-        Caja caja = new Caja("AlgunFondo", 1, true);
+        Caja caja = new Caja("AlgunFondo", 1);
 
         //estas son instancias de prueba para pokemon
         Pokemon charmander = new Pokemon("Charmander", "Fuego", 14, 145, 56, true);
@@ -57,12 +57,25 @@ public class Tests {
         Pokemon mewtwo20 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
 
         System.out.println(caja.getPokemones().size());
-        
+
         caja.agregar_Pokemon(pikachu, 0);
-        caja.agregar_Pokemon(pikachu, 1);
-        caja.agregar_Pokemon(pikachu, 1);
-        caja.agregar_Pokemon(pikachu, 4);
-        
+        caja.agregar_Pokemon(charizard, 1);
+        caja.agregar_Pokemon(bulbasaur, 1);
+        caja.agregar_Pokemon(bulbasaur, 4);
+        caja.agregar_Pokemon(alakazam, 10);
+
         System.out.println(caja.getPokemones());
+
+        
+        /* esto es para probar los cambios de posicon con el método de mover pokemon
+        caja.mover_Pokemon_posicion(1, 3);
+        System.out.println(caja.getPokemones());
+        caja.mover_Pokemon_posicion(0, 3);
+        System.out.println(caja.getPokemones());
+        caja.mover_Pokemon_posicion(0, 0);
+        System.out.println(caja.getPokemones());
+        caja.mover_Pokemon_posicion(2, 3);
+        System.out.println(caja.getPokemones());
+        */
     }
 }
