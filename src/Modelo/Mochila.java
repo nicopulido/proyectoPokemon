@@ -1,6 +1,5 @@
 package Modelo;
 
-
 import java.util.ArrayList;
 
 public class Mochila {
@@ -20,6 +19,7 @@ public class Mochila {
     }
 
     public void darObjetoPokemon() {
+        
     }
 
     public void eliminarObjeto() {

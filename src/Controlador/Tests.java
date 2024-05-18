@@ -69,7 +69,6 @@ public class Tests {
         Objeto baya = new Objeto("Baya", "Una baya sabrosa que puede ser comida por un Pokémon para restaurar algo de salud.");
         Objeto piedra = new Objeto("Piedra", "Una piedra especial que puede inducir la evolución de ciertos Pokémon.");
 
-        /*
         System.out.println(equipo);
 
         equipo.agregar_Pokemon(blastoise, 0);
@@ -94,8 +93,7 @@ public class Tests {
         equipo.darObjetoPokemon(piedra, 0);
         System.out.println(equipo.getPokemones().get(0).getObjeto());
         System.out.println(equipo);
-         */
- /*
+
         System.out.println(caja.getPokemones().size());
 
         caja.agregar_Pokemon(pikachu, 0);
@@ -105,12 +103,12 @@ public class Tests {
         caja.agregar_Pokemon(alakazam, 10);
 
         System.out.println(caja.getPokemones());
-        
+
         caja.soltar_Pokemon(0);
-        
+        System.out.println(caja.getPokemones());
         /// System.out.println(caja.getPokemones());   PARA PROBAR LA LIBERACIÓN DE POKEMONES EN LA CAJA
-        
-         esto es para probar los cambios de posicon con el método de mover pokemon
+
+        ///esto es para probar los cambios de posicon con el método de mover pokemon
         caja.mover_Pokemon_posicion(1, 3);
         System.out.println(caja.getPokemones());
         caja.mover_Pokemon_posicion(0, 3);
@@ -119,6 +117,40 @@ public class Tests {
         System.out.println(caja.getPokemones());
         caja.mover_Pokemon_posicion(2, 3);
         System.out.println(caja.getPokemones());
-         */
+        caja.mover_Pokemon_posicion(4, 10);
+        System.out.println(caja.getPokemones());
+        caja.mover_Pokemon_posicion(10, 5);
+        System.out.println(caja.getPokemones());
+
+        System.out.println("\n");
+        System.out.println(equipo);
+        System.out.println(caja.getPokemones());
+
+        System.out.println("\n");
+        caja.llevarPokemonAEquipo(0, 0, equipo);
+        System.out.println(equipo);
+        System.out.println(caja.getPokemones());
+
+        System.out.println("\n");
+        caja.llevarPokemonAEquipo(3, 9, equipo);
+        System.out.println(equipo);
+        System.out.println(caja.getPokemones());
+
+        System.out.println("\n");
+        caja.llevarPokemonAEquipo(50, 9, equipo);
+        System.out.println(equipo);
+        System.out.println(caja.getPokemones());
+
+        System.out.println("\n");
+        caja.llevarPokemonAEquipo(3, 4, equipo);
+        System.out.println(equipo);
+        System.out.println(caja.getPokemones());
+
+        System.out.println("\n");
+        caja.llevarPokemonAEquipo(3, 4, equipo);
+        System.out.println(equipo);
+        System.out.println(caja.getPokemones());
+        
+
     }
 }

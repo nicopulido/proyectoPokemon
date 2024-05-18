@@ -70,6 +70,11 @@ public class EquipoPokemon {
     }
 
     //Metodos
+    
+    
+    
+    //COrregir este método para algo similar a lo que se hizo en la caja
+    
     public void mover_Pokemon_posicion(int posicion_salida, int posicion_llegada) {
         if (posicion_salida >= 0 && posicion_llegada >= 0 && posicion_llegada <= this.pokemones.size() && posicion_salida <= this.pokemones.size()) {
             if (this.pokemones.get(posicion_salida) == null) {

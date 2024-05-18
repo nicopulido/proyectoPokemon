@@ -62,19 +62,12 @@ public class Caja {
     public void mover_Pokemon_posicion(int posicion_salida, int posicion_llegada) { //la posición de salida es la posición que se quiere mover, y la de llegada es la posición a la que se va a mover
         if (posicion_salida >= 0 && posicion_llegada >= 0 && posicion_llegada <= this.pokemones.size() && posicion_salida <= this.pokemones.size()) {
             if (this.pokemones.get(posicion_salida) == null) {
-                System.out.println("No hay ningun pokemón aquí");
+                System.out.println("No hay ningun pokemón aquí, Posicion: " + posicion_salida);
             } else if (posicion_llegada != posicion_salida) {
-                this.pokemon_seleccionado = pokemones.get(posicion_salida);
-                System.out.println(this.pokemon_seleccionado);
-                pokemones.set(posicion_salida, null);
-                if (this.pokemones.get(posicion_llegada) != null) { //en ese if es para cambiar 2 pokemones de posicion
-                    this.pokemones.set(posicion_salida, this.pokemones.get(posicion_llegada));
-                    this.pokemones.set(posicion_llegada, this.pokemon_seleccionado);
-                } else {//este else es para cuando en la posicon de llegada no hay pokemones, y setea la posición de salida a null porque no se cambia ningún pokemong
-                    this.pokemones.set(posicion_llegada, this.pokemon_seleccionado);
-                    this.pokemones.set(posicion_salida, null);
-                }
-                this.pokemon_seleccionado = null;
+                Pokemon pokemonLlegada= pokemones.get(posicion_llegada);
+                Pokemon pokemonSalida = pokemones.get(posicion_salida);
+                this.pokemones.set(posicion_salida, pokemonLlegada);
+                this.pokemones.set(posicion_llegada, pokemonSalida);
             }
         } else {
             System.out.println("La posición especificada está fuera de los límites del ArrayList.");
@@ -108,14 +101,26 @@ public class Caja {
         }
     }
 
-    public void intercambiarPosicionPokemón() {
-    }
-
-    public void llevarPokemonEquipo() {
-
+    public void llevarPokemonAEquipo(int posicionCaja, int posicionEquipo, EquipoPokemon equipoPokemon) {
+        if (posicionCaja >= 0 && posicionCaja < this.pokemones.size()) {
+            if (posicionEquipo < equipoPokemon.getNum_Pokemon() && posicionEquipo >= 0) {
+                if (this.pokemones.get(posicionCaja) != null) {
+                    Pokemon pokemonCaja = this.pokemones.get(posicionCaja);
+                    Pokemon pokemonEquipo = equipoPokemon.getPokemones().get(posicionEquipo);
+                    this.pokemones.add(posicionCaja, pokemonEquipo);
+                    equipoPokemon.getPokemones().add(posicionEquipo, pokemonCaja);
+                } else {
+                    System.out.println("No hay ningún pokemón en la posición " + posicionCaja +" de la caja");
+                }
+            } else {
+                System.out.println("La posición en el equipo no es valida");
+            }
+        } else {
+            System.out.println("La posición en la caja no es valida");
+        }
     }
 
     public void quitarObjetoPokemon() {
-        
+
     }
 }
