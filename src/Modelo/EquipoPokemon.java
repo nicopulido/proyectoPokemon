@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class EquipoPokemon {
 
     //atributos
-    private int num_Pokemon = 6;
+    private final int num_Pokemon = 6;
     private ArrayList<Pokemon> pokemones;
 
     //Constructores
@@ -127,8 +127,8 @@ public class EquipoPokemon {
                 if (this.pokemones.get(posicionEquipo) != null) {
                     Pokemon pokemonEquipo = this.pokemones.get(posicionEquipo);
                     Pokemon pokemonCaja = caja.getPokemones().get(posicionCaja);
-                    this.pokemones.add(posicionEquipo, pokemonCaja);
-                    caja.getPokemones().add(posicionCaja, pokemonEquipo);
+                    this.pokemones.set(posicionEquipo, pokemonCaja);
+                    caja.getPokemones().set(posicionCaja, pokemonEquipo);
                 } else {
                     System.out.println("No hay ningún pokemón en la posición " + posicionEquipo +" del equipo");
                 }

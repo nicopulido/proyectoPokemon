@@ -5,18 +5,13 @@ import java.util.ArrayList;
 public class Caja {
 
     //agregar los atributos
-    private String fondo;
-    private static int num_Espacios = 30; //porque solamente pueden haber 30 espacios por caja
-    private int num_Caja;
+    private final static int num_Espacios = 30; //porque solamente pueden haber 30 espacios por caja
+    private static int num_Caja = 0;
     private ArrayList<Pokemon> pokemones;
 
     //constructores
     public Caja() {
-    }
-
-    public Caja(String fondo, int num_Caja) {
-        this.fondo = fondo;
-        this.num_Caja = num_Caja;
+        this.num_Caja += 1;
         this.pokemones = new ArrayList<Pokemon>(Caja.num_Espacios);
         for (int i = 0; i < 30; i++) {
             this.pokemones.add(null);
@@ -24,14 +19,6 @@ public class Caja {
     }
 
     //Getter and Setter
-    public String getFondo() {
-        return fondo;
-    }
-
-    public void setFondo(String fondo) {
-        this.fondo = fondo;
-    }
-
     public int getNum_Espacios() {
         return num_Espacios;
     }
@@ -61,13 +48,13 @@ public class Caja {
             if (this.pokemones.get(posicion_salida) == null) {
                 System.out.println("No hay ningun pokemón aquí, Posicion: " + posicion_salida);
             } else if (posicion_llegada != posicion_salida) {
-                Pokemon pokemonLlegada= pokemones.get(posicion_llegada);
+                Pokemon pokemonLlegada = pokemones.get(posicion_llegada);
                 Pokemon pokemonSalida = pokemones.get(posicion_salida);
                 this.pokemones.set(posicion_salida, pokemonLlegada);
                 this.pokemones.set(posicion_llegada, pokemonSalida);
             }
         } else {
-            System.out.println("La posición especificada está fuera de los límites del ArrayList.");
+            System.out.println("Alguna de las 2 posiciones no está dentro de los límites");
         }
     }
 
@@ -81,7 +68,7 @@ public class Caja {
                 System.out.println("La posición " + posicion + " está ocupada por otro Pokémon.");
             }
         } else {
-            System.out.println("La posición especificada está fuera de los límites del ArrayList.");
+            System.out.println("No hay ningún pokemón en la posición " + posicion + " de la caja");
         }
     }
 
@@ -94,7 +81,7 @@ public class Caja {
                 System.out.println("Pokemon liberado");
             }
         } else {
-            System.out.println("La posición especificada está fuera de los límites del ArrayList.");
+            System.out.println("No hay ningún pokemón en la posición " + posicion + " de la caja");
         }
     }
 
@@ -104,10 +91,10 @@ public class Caja {
                 if (this.pokemones.get(posicionCaja) != null) {
                     Pokemon pokemonCaja = this.pokemones.get(posicionCaja);
                     Pokemon pokemonEquipo = equipoPokemon.getPokemones().get(posicionEquipo);
-                    this.pokemones.add(posicionCaja, pokemonEquipo);
-                    equipoPokemon.getPokemones().add(posicionEquipo, pokemonCaja);
+                    this.pokemones.set(posicionCaja, pokemonEquipo);
+                    equipoPokemon.getPokemones().set(posicionEquipo, pokemonCaja);
                 } else {
-                    System.out.println("No hay ningún pokemón en la posición " + posicionCaja +" de la caja");
+                    System.out.println("No hay ningún pokemón en la posición " + posicionCaja + " de la caja");
                 }
             } else {
                 System.out.println("La posición en el equipo no es valida");
@@ -130,11 +117,11 @@ public class Caja {
                 System.out.println("No hay ningún pokemón en esta posición");
             }
         } else {
-            System.out.println("La posición especificada está fuera de los límites del ArrayList.");
+            System.out.println("No hay ningún pokemón en la posición " + posicionPokemon + " de la caja");
         }
-        
+
     }
-    
+
     public void darObjetoPokemon(Objeto objeto, int posicion) {
         if (posicion >= 0 && posicion < Caja.num_Espacios) {
             if (this.pokemones.get(posicion) != null) {
@@ -147,7 +134,15 @@ public class Caja {
                 System.out.println("No hay ningún pokemón en esta posición");
             }
         } else {
-            System.out.println("La posición especificada está fuera de los límites del ArrayList.");
+            System.out.println("No hay ningún pokemón en la posición " + posicion + " de la caja");
         }
+    }
+    
+    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(pokemones);
+        return sb.toString();
     }
 }

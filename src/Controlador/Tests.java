@@ -5,63 +5,53 @@ import Modelo.EquipoPokemon;
 import Modelo.Mochila;
 import Modelo.Objeto;
 import Modelo.Pokemon;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Tests {
 
     public static void main(String[] args) {
-        Caja caja = new Caja("AlgunFondo", 1);
+        // Crear instancias de las cajas
+        Caja caja1 = new Caja();
+        Caja caja2 = new Caja();
+        Caja caja3 = new Caja();
+
+        // Crear una instancia del equipo y la mochila
         EquipoPokemon equipo = new EquipoPokemon();
         Mochila mochila = new Mochila();
 
-        //estas son instancias de prueba para pokemon
-        Pokemon charmander = new Pokemon("Charmander", "Fuego", 14, 145, 56, true);
-        Pokemon squirtle = new Pokemon("Squirtle", "Agua", 12, 132, 45, true);
-        Pokemon bulbasaur = new Pokemon("Bulbasaur", "Planta", 11, 128, 49, true);
-        Pokemon pikachu = new Pokemon("Pikachu", "Eléctrico", 13, 155, 60, true);
-        Pokemon jigglypuff = new Pokemon("Jigglypuff", "Normal", 10, 115, 55, true);
-        Pokemon eevee = new Pokemon("Eevee", "Normal", 12, 135, 51, true);
-        Pokemon magikarp = new Pokemon("Magikarp", "Agua", 9, 100, 30, true);
-        Pokemon meowth = new Pokemon("Meowth", "Normal", 11, 120, 45, true);
-        Pokemon charizard = new Pokemon("Charizard", "Fuego", 17, 170, 75, true);
-        Pokemon blastoise = new Pokemon("Blastoise", "Agua", 16, 160, 80, true);
-        Pokemon venusaur = new Pokemon("Venusaur", "Planta", 18, 180, 85, true);
-        Pokemon raichu = new Pokemon("Raichu", "Eléctrico", 15, 160, 70, true);
-        Pokemon snorlax = new Pokemon("Snorlax", "Normal", 20, 200, 120, true);
-        Pokemon dragonite = new Pokemon("Dragonite", "Dragón", 21, 210, 100, true);
-        Pokemon mewtwo = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
-        Pokemon gengar = new Pokemon("Gengar", "Fantasma", 18, 175, 65, true);
-        Pokemon alakazam = new Pokemon("Alakazam", "Psíquico", 16, 165, 55, true);
-        Pokemon machamp = new Pokemon("Machamp", "Lucha", 19, 185, 90, true);
-        Pokemon gyarados = new Pokemon("Gyarados", "Agua", 20, 200, 95, true);
-        Pokemon mew = new Pokemon("Mew", "Psíquico", 18, 175, 70, true);
-        Pokemon lapras = new Pokemon("Lapras", "Agua", 17, 170, 85, true);
-        Pokemon articuno = new Pokemon("Articuno", "Hielo", 20, 190, 90, true);
-        Pokemon zapdos = new Pokemon("Zapdos", "Eléctrico", 18, 180, 85, true);
-        Pokemon moltres = new Pokemon("Moltres", "Fuego", 19, 185, 80, true);
-        Pokemon moltres2 = new Pokemon("Moltres", "Fuego", 19, 185, 80, true);
-        Pokemon dratini = new Pokemon("Dratini", "Dragón", 10, 100, 50, true);
-        Pokemon dragonair = new Pokemon("Dragonair", "Dragón", 15, 150, 70, true);
-        Pokemon mewtwo2 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
-        Pokemon mewtwo3 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
-        Pokemon mewtwo4 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
-        Pokemon mewtwo5 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
-        Pokemon mewtwo6 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
-        Pokemon mewtwo7 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
-        Pokemon mewtwo8 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
-        Pokemon mewtwo9 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
-        Pokemon mewtwo10 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
-        Pokemon mewtwo11 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
-        Pokemon mewtwo12 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
-        Pokemon mewtwo13 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
-        Pokemon mewtwo14 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
-        Pokemon mewtwo15 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
-        Pokemon mewtwo16 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
-        Pokemon mewtwo17 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
-        Pokemon mewtwo18 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
-        Pokemon mewtwo19 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
-        Pokemon mewtwo20 = new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true);
+        // Crear instancias de Pokémon
+        Pokemon[] pokemons = {
+            new Pokemon("Charmander", "Fuego", 14, 145, 56, true),
+            new Pokemon("Squirtle", "Agua", 12, 132, 45, true),
+            new Pokemon("Bulbasaur", "Planta", 11, 128, 49, true),
+            new Pokemon("Pikachu", "Eléctrico", 13, 155, 60, true),
+            new Pokemon("Jigglypuff", "Normal", 10, 115, 55, true),
+            new Pokemon("Eevee", "Normal", 12, 135, 51, true),
+            new Pokemon("Magikarp", "Agua", 9, 100, 30, true),
+            new Pokemon("Meowth", "Normal", 11, 120, 45, true),
+            new Pokemon("Charizard", "Fuego", 17, 170, 75, true),
+            new Pokemon("Blastoise", "Agua", 16, 160, 80, true),
+            new Pokemon("Venusaur", "Planta", 18, 180, 85, true),
+            new Pokemon("Raichu", "Eléctrico", 15, 160, 70, true),
+            new Pokemon("Snorlax", "Normal", 20, 200, 120, true),
+            new Pokemon("Dragonite", "Dragón", 21, 210, 100, true),
+            new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true),
+            new Pokemon("Gengar", "Fantasma", 18, 175, 65, true),
+            new Pokemon("Alakazam", "Psíquico", 16, 165, 55, true),
+            new Pokemon("Machamp", "Lucha", 19, 185, 90, true),
+            new Pokemon("Gyarados", "Agua", 20, 200, 95, true),
+            new Pokemon("Mew", "Psíquico", 18, 175, 70, true),
+            new Pokemon("Lapras", "Agua", 17, 170, 85, true),
+            new Pokemon("Articuno", "Hielo", 20, 190, 90, true),
+            new Pokemon("Zapdos", "Eléctrico", 18, 180, 85, true),
+            new Pokemon("Moltres", "Fuego", 19, 185, 80, true),
+            new Pokemon("Moltres", "Fuego", 19, 185, 80, true),
+            new Pokemon("Dratini", "Dragón", 10, 100, 50, true),
+            new Pokemon("Dragonair", "Dragón", 15, 150, 70, true),
+            new Pokemon("Mewtwo", "Psíquico", 22, 220, 90, true),};
 
-        //instancias de objetos
+        // Crear instancias de objetos
         Objeto pokeball = new Objeto("Pokeball", "Una esfera utilizada para capturar Pokémon.");
         Objeto poción = new Objeto("Poción", "Una poción que restaura algunos puntos de salud a un Pokémon.");
         Objeto superpoción = new Objeto("Superpoción", "Una poción más fuerte que restaura más puntos de salud a un Pokémon.");
@@ -71,88 +61,50 @@ public class Tests {
         Objeto baya = new Objeto("Baya", "Una baya sabrosa que puede ser comida por un Pokémon para restaurar algo de salud.");
         Objeto piedra = new Objeto("Piedra", "Una piedra especial que puede inducir la evolución de ciertos Pokémon.");
 
-        System.out.println(equipo);
+        // Agregar Pokémon a las cajas en posiciones aleatorias
+        Random random = new Random();
+        Caja[] cajas = {caja1, caja2, caja3};
 
-        equipo.agregar_Pokemon(blastoise, 0);
-        equipo.agregar_Pokemon(bulbasaur, 1);
-        equipo.agregar_Pokemon(alakazam, 2);
-        equipo.agregar_Pokemon(dragonair, 3);
-        equipo.agregar_Pokemon(articuno, 4);
-        equipo.agregar_Pokemon(gengar, 5);
-        equipo.agregar_Pokemon(lapras, 6);
-        equipo.agregar_Pokemon(dratini, 0);
+        for (Pokemon pokemon : pokemons) {
+            int cajaIndex = random.nextInt(cajas.length); // Selecciona una caja aleatoria
+            int posicion = random.nextInt(30); // Supongamos que cada caja tiene 30 posiciones
+            cajas[cajaIndex].agregar_Pokemon(pokemon, posicion);
+        }
 
-        equipo.darObjetoPokemon(huevo, 5);
-
-        System.out.println(equipo.getPokemones());
-        System.out.println(equipo.getPokemones().get(5).getObjeto());
-        equipo.quitarObjeto(5,mochila);
-        System.out.println(equipo.getPokemones().get(5).getObjeto());
-        equipo.darObjetoPokemon(huevo, 5);
-        System.out.println(equipo.getPokemones().get(5).getObjeto());
-        equipo.darObjetoPokemon(baya, 5);
-        System.out.println(equipo.getPokemones().get(5).getObjeto());
-        equipo.darObjetoPokemon(piedra, 0);
-        System.out.println(equipo.getPokemones().get(0).getObjeto());
-        System.out.println(equipo);
-
-        System.out.println(caja.getPokemones().size());
-
-        caja.agregar_Pokemon(pikachu, 0);
-        caja.agregar_Pokemon(charizard, 1);
-        caja.agregar_Pokemon(bulbasaur, 1);
-        caja.agregar_Pokemon(bulbasaur, 4);
-        caja.agregar_Pokemon(alakazam, 10);
-
-        System.out.println(caja.getPokemones());
-
-        caja.soltar_Pokemon(0);
-        System.out.println(caja.getPokemones());
-        /// System.out.println(caja.getPokemones());   PARA PROBAR LA LIBERACIÓN DE POKEMONES EN LA CAJA
-
-        ///esto es para probar los cambios de posicon con el método de mover pokemon
-        caja.mover_Pokemon_posicion(1, 3);
-        System.out.println(caja.getPokemones());
-        caja.mover_Pokemon_posicion(0, 3);
-        System.out.println(caja.getPokemones());
-        caja.mover_Pokemon_posicion(0, 0);
-        System.out.println(caja.getPokemones());
-        caja.mover_Pokemon_posicion(2, 3);
-        System.out.println(caja.getPokemones());
-        caja.mover_Pokemon_posicion(4, 10);
-        System.out.println(caja.getPokemones());
-        caja.mover_Pokemon_posicion(10, 5);
-        System.out.println(caja.getPokemones());
-
-        System.out.println("\n");
-        System.out.println(equipo);
-        System.out.println(caja.getPokemones());
-
-        System.out.println("\n");
-        caja.llevarPokemonAEquipo(0, 0, equipo);
-        System.out.println(equipo);
-        System.out.println(caja.getPokemones());
-
-        System.out.println("\n");
-        caja.llevarPokemonAEquipo(3, 9, equipo);
-        System.out.println(equipo);
-        System.out.println(caja.getPokemones());
-
-        System.out.println("\n");
-        caja.llevarPokemonAEquipo(50, 9, equipo);
-        System.out.println(equipo);
-        System.out.println(caja.getPokemones());
-
-        System.out.println("\n");
-        caja.llevarPokemonAEquipo(3, 4, equipo);
-        System.out.println(equipo);
-        System.out.println(caja.getPokemones());
-
-        System.out.println("\n");
-        caja.llevarPokemonAEquipo(3, 4, equipo);
-        System.out.println(equipo);
-        System.out.println(caja.getPokemones());
+        // Mostrar el equipo
+        // Agregar Pokémon al equipo
+        for (int i = 0; i < 6; i++) {
+            int randomIndex = random.nextInt(pokemons.length);
+            equipo.agregar_Pokemon(pokemons[randomIndex], i);
+        }
+        // Mostrar el equipo
         
-
+        
+        caja1.soltar_Pokemon(0);
+        caja1.soltar_Pokemon(1);
+        caja1.soltar_Pokemon(4);
+        caja1.soltar_Pokemon(7);
+        caja1.soltar_Pokemon(8);
+        
+        caja1.agregar_Pokemon(pokemons[4], 0);
+        caja1.agregar_Pokemon(pokemons[5], 1);
+        caja1.agregar_Pokemon(pokemons[6], 4);
+        caja1.agregar_Pokemon(pokemons[7], 7);
+        caja1.agregar_Pokemon(pokemons[8], 8);
+        
+        System.out.println("\n");
+        System.out.println(equipo);
+        System.out.println(caja1);
+        System.out.println("\n");
+        
+        
+        caja1.llevarPokemonAEquipo(0, 0, equipo);
+        System.out.println(equipo);
+        System.out.println(caja1);
+        
+        
+        
+        
+        
     }
 }

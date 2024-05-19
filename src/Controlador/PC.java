@@ -21,6 +21,11 @@ public class PC {
     //constructores
 
     public PC() {
+        this.cajas = new ArrayList<>(10);
+        for (int i = 0; i < 10; i++) {
+            Caja caja = new Caja();
+            this.cajas.add(caja);
+        }
     }
 
     public PC(ArrayList<Caja> cajas, ArrayList<Objeto> objetos) {
