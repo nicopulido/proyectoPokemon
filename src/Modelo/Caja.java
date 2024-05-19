@@ -120,7 +120,8 @@ public class Caja {
         }
     }
 
-    public void quitarObjetoPokemon() {
-
+    public void quitarObjetoPokemon(int posicionPokemon) {
+        this.pokemones.get(posicionPokemon);
+        
     }
 }

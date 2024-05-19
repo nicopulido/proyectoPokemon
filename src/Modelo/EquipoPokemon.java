@@ -124,12 +124,12 @@ public class EquipoPokemon {
         }
     }
 
-    public void quitarObjeto(int posicion) {
-        if (posicion >= 0 && posicion < this.num_Pokemon) {
-            if (this.pokemones.get(posicion) != null) {
-                if (this.pokemones.get(posicion).getObjeto() != null) {
-                    this.objeto_seleccionado = this.pokemones.get(posicion).getObjeto();
-                    this.pokemones.get(posicion).setObjeto(null);
+    public void quitarObjeto(int posicionPokemon) {
+        if (posicionPokemon >= 0 && posicionPokemon < this.num_Pokemon) {
+            if (this.pokemones.get(posicionPokemon) != null) {
+                if (this.pokemones.get(posicionPokemon).getObjeto() != null) {
+                    this.objeto_seleccionado = this.pokemones.get(posicionPokemon).getObjeto();
+                    this.pokemones.get(posicionPokemon).setObjeto(null);
                 } else {
                     System.out.println("Este pokemón no tiene objeto");
                 }
