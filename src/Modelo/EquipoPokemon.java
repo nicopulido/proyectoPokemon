@@ -15,21 +15,16 @@ public class EquipoPokemon {
     //atributos
     private int num_Pokemon = 6;
     private ArrayList<Pokemon> pokemones;
-    private Pokemon pokemon_seleccionado;
-    private Objeto objeto_seleccionado;
 
     //Constructores
     public EquipoPokemon() {
         this.pokemones = new ArrayList<Pokemon>(num_Pokemon);
-        this.pokemon_seleccionado = null;
-        this.objeto_seleccionado = null;
         for (int i = 0; i < 6; i++) {
             this.pokemones.add(null);
         }
     }
 
     public EquipoPokemon(ArrayList<Pokemon> Pokemones) {
-        this.pokemon_seleccionado = null;
         for (int i = 0; i < 6; i++) {
             this.pokemones.add(null);
         }
@@ -41,10 +36,6 @@ public class EquipoPokemon {
         return num_Pokemon;
     }
 
-    public void setNum_Pokemon(int num_Pokemon) {
-        this.num_Pokemon = num_Pokemon;
-    }
-
     public ArrayList<Pokemon> getPokemones() {
         return this.pokemones;
     }
@@ -53,47 +44,20 @@ public class EquipoPokemon {
         this.pokemones = pokemones;
     }
 
-    public Pokemon getPokemon_seleccionado() {
-        return pokemon_seleccionado;
-    }
-
-    public void setPokemon_seleccionado(Pokemon pokemon_seleccionado) {
-        this.pokemon_seleccionado = pokemon_seleccionado;
-    }
-
-    public Objeto getObjeto_seleccionado() {
-        return objeto_seleccionado;
-    }
-
-    public void setObjeto_seleccionado(Objeto objeto_seleccionado) {
-        this.objeto_seleccionado = objeto_seleccionado;
-    }
-
     //Metodos
-    
-    
-    
     //COrregir este método para algo similar a lo que se hizo en la caja
-    
     public void mover_Pokemon_posicion(int posicion_salida, int posicion_llegada) {
         if (posicion_salida >= 0 && posicion_llegada >= 0 && posicion_llegada <= this.pokemones.size() && posicion_salida <= this.pokemones.size()) {
             if (this.pokemones.get(posicion_salida) == null) {
-                System.out.println("No hay ningun pokemón aquí");
+                System.out.println("No hay ningun pokemón aquí, Posicion: " + posicion_salida);
             } else if (posicion_llegada != posicion_salida) {
-                this.pokemon_seleccionado = pokemones.get(posicion_salida);
-                System.out.println(this.pokemon_seleccionado);
-                pokemones.set(posicion_salida, null);
-                if (this.pokemones.get(posicion_llegada) != null) { //en ese if es para cambiar 2 pokemones de posicion
-                    this.pokemones.set(posicion_salida, this.pokemones.get(posicion_llegada));
-                    this.pokemones.set(posicion_llegada, this.pokemon_seleccionado);
-                } else {//este else es para cuando en la posicon de llegada no hay pokemones, y setea la posición de salida a null porque no se cambia ningún pokemong
-                    this.pokemones.set(posicion_llegada, this.pokemon_seleccionado);
-                    this.pokemones.set(posicion_salida, null);
-                }
-                this.pokemon_seleccionado = null;
+                Pokemon pokemonLlegada = pokemones.get(posicion_llegada);
+                Pokemon pokemonSalida = pokemones.get(posicion_salida);
+                this.pokemones.set(posicion_salida, pokemonLlegada);
+                this.pokemones.set(posicion_llegada, pokemonSalida);
             }
         } else {
-            System.out.println("La posición especificada está fuera de los límites del ArrayList.");
+            System.out.println("Alguna de las posiciones no está en los límites");
         }
     }
 
@@ -107,7 +71,7 @@ public class EquipoPokemon {
                 System.out.println("La posición " + posicion + " está ocupada por otro Pokémon.");
             }
         } else {
-            System.out.println("La posición especificada está fuera de los límites del ArrayList.");
+            System.out.println("La posición " + posicion + " no existe en el quipo");
         }
     }
 
@@ -120,15 +84,15 @@ public class EquipoPokemon {
                 System.out.println("Pokemon liberado");
             }
         } else {
-            System.out.println("La posición especificada está fuera de los límites del ArrayList.");
+            System.out.println("La posición " + posicion + " no existe en el quipo");
         }
     }
 
-    public void quitarObjeto(int posicionPokemon) {
+    public void quitarObjeto(int posicionPokemon, Mochila mochila) {
         if (posicionPokemon >= 0 && posicionPokemon < this.num_Pokemon) {
             if (this.pokemones.get(posicionPokemon) != null) {
                 if (this.pokemones.get(posicionPokemon).getObjeto() != null) {
-                    this.objeto_seleccionado = this.pokemones.get(posicionPokemon).getObjeto();
+                    mochila.getObjetos().add(this.pokemones.get(posicionPokemon).getObjeto());
                     this.pokemones.get(posicionPokemon).setObjeto(null);
                 } else {
                     System.out.println("Este pokemón no tiene objeto");
@@ -137,7 +101,7 @@ public class EquipoPokemon {
                 System.out.println("No hay ningún pokemón en esta posición");
             }
         } else {
-            System.out.println("La posición especificada está fuera de los límites del ArrayList.");
+            System.out.println("La posición " + posicionPokemon + " no existe en el quipo");
         }
     }
 
@@ -153,7 +117,26 @@ public class EquipoPokemon {
                 System.out.println("No hay ningún pokemón en esta posición");
             }
         } else {
-            System.out.println("La posición especificada está fuera de los límites del ArrayList.");
+            System.out.println("La posición " + posicion + " no existe en el quipo");
+        }
+    }
+    
+    public void llevarPokemonACaja(int posicionCaja, int posicionEquipo, Caja caja) {
+        if (posicionCaja >= 0 && posicionCaja < caja.getNum_Espacios()) {
+            if (posicionEquipo < this.num_Pokemon && posicionEquipo >= 0) {
+                if (this.pokemones.get(posicionEquipo) != null) {
+                    Pokemon pokemonEquipo = this.pokemones.get(posicionEquipo);
+                    Pokemon pokemonCaja = caja.getPokemones().get(posicionCaja);
+                    this.pokemones.add(posicionEquipo, pokemonCaja);
+                    caja.getPokemones().add(posicionCaja, pokemonEquipo);
+                } else {
+                    System.out.println("No hay ningún pokemón en la posición " + posicionEquipo +" del equipo");
+                }
+            } else {
+                System.out.println("La posición en el equipo no es valida");
+            }
+        } else {
+            System.out.println("La posición en la caja no es valida");
         }
     }
 

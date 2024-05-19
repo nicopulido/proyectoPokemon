@@ -1,7 +1,6 @@
 package Modelo;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class Caja {
 
@@ -10,7 +9,6 @@ public class Caja {
     private static int num_Espacios = 30; //porque solamente pueden haber 30 espacios por caja
     private int num_Caja;
     private ArrayList<Pokemon> pokemones;
-    private Pokemon pokemon_seleccionado; //por si se cambia pokemon o se selecciona en la caja y no se puede intercambiar o poner en alguna posicion
 
     //constructores
     public Caja() {
@@ -20,7 +18,6 @@ public class Caja {
         this.fondo = fondo;
         this.num_Caja = num_Caja;
         this.pokemones = new ArrayList<Pokemon>(Caja.num_Espacios);
-        this.pokemon_seleccionado = null;
         for (int i = 0; i < 30; i++) {
             this.pokemones.add(null);
         }
@@ -120,8 +117,37 @@ public class Caja {
         }
     }
 
-    public void quitarObjetoPokemon(int posicionPokemon) {
-        this.pokemones.get(posicionPokemon);
+    public void quitarObjetoPokemon(int posicionPokemon, Mochila mochila) {
+        if (posicionPokemon >= 0 && posicionPokemon < Caja.num_Espacios) {
+            if (this.pokemones.get(posicionPokemon) != null) {
+                if (this.pokemones.get(posicionPokemon).getObjeto() != null) {
+                    mochila.getObjetos().add(this.pokemones.get(posicionPokemon).getObjeto());
+                    this.pokemones.get(posicionPokemon).setObjeto(null);
+                } else {
+                    System.out.println("Este pokemón no tiene objeto");
+                }
+            } else {
+                System.out.println("No hay ningún pokemón en esta posición");
+            }
+        } else {
+            System.out.println("La posición especificada está fuera de los límites del ArrayList.");
+        }
         
+    }
+    
+    public void darObjetoPokemon(Objeto objeto, int posicion) {
+        if (posicion >= 0 && posicion < Caja.num_Espacios) {
+            if (this.pokemones.get(posicion) != null) {
+                if (this.pokemones.get(posicion).getObjeto() == null) {
+                    this.pokemones.get(posicion).setObjeto(objeto);
+                } else {
+                    System.out.println("Este pokemón ya tiene objeto");
+                }
+            } else {
+                System.out.println("No hay ningún pokemón en esta posición");
+            }
+        } else {
+            System.out.println("La posición especificada está fuera de los límites del ArrayList.");
+        }
     }
 }

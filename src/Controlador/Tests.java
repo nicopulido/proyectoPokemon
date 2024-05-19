@@ -2,6 +2,7 @@ package Controlador;
 
 import Modelo.Caja;
 import Modelo.EquipoPokemon;
+import Modelo.Mochila;
 import Modelo.Objeto;
 import Modelo.Pokemon;
 
@@ -10,6 +11,7 @@ public class Tests {
     public static void main(String[] args) {
         Caja caja = new Caja("AlgunFondo", 1);
         EquipoPokemon equipo = new EquipoPokemon();
+        Mochila mochila = new Mochila();
 
         //estas son instancias de prueba para pokemon
         Pokemon charmander = new Pokemon("Charmander", "Fuego", 14, 145, 56, true);
@@ -84,8 +86,8 @@ public class Tests {
 
         System.out.println(equipo.getPokemones());
         System.out.println(equipo.getPokemones().get(5).getObjeto());
-        equipo.quitarObjeto(5);
-        System.out.println(equipo.getPokemones().get(5).getObjeto() + " " + equipo.getObjeto_seleccionado());
+        equipo.quitarObjeto(5,mochila);
+        System.out.println(equipo.getPokemones().get(5).getObjeto());
         equipo.darObjetoPokemon(huevo, 5);
         System.out.println(equipo.getPokemones().get(5).getObjeto());
         equipo.darObjetoPokemon(baya, 5);
