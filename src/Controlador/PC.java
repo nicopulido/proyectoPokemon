@@ -1,6 +1,8 @@
 package Controlador;
 
 import Modelo.Caja;
+import Modelo.EquipoPokemon;
+import Modelo.Mochila;
 import Modelo.Objeto;
 import Modelo.Pokemon;
 import java.util.ArrayList;
@@ -15,7 +17,9 @@ public class PC {
     private ArrayList<Caja> cajas;
     private ArrayList<Objeto> objetos;
     private Pokemon pokemonSeleccionado;
+    private EquipoPokemon equipoPokemon;
     private Objeto objeto;
+    private Mochila mochila;
     
     
     //constructores
