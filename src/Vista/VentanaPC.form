@@ -185,9 +185,6 @@
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="textoCaja">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Caja:"/>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>

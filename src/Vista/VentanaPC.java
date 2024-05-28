@@ -16,6 +16,7 @@ public class VentanaPC extends javax.swing.JFrame {
 
     private PC pc;
     private Pokemon pokemonSeleccionado;
+    private int cajaSeleccion;
 
     public VentanaPC(PC pc) {
         this.pokemonSeleccionado = null;
@@ -115,8 +116,6 @@ public class VentanaPC extends javax.swing.JFrame {
             }
         });
 
-        textoCaja.setText("Caja:");
-
         javax.swing.GroupLayout panelPCLayout = new javax.swing.GroupLayout(panelPC);
         panelPC.setLayout(panelPCLayout);
         panelPCLayout.setHorizontalGroup(
@@ -204,15 +203,23 @@ public class VentanaPC extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonCajaAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCajaAnteriorActionPerformed
-        // TODO add your handling code here:
+        if (this.cajaSeleccion > 0) {
+            this.cajaSeleccion--;
+        }
+        actualizarLista();
+        textoCaja.setText("Caja: " + (this.cajaSeleccion + 1));
     }//GEN-LAST:event_botonCajaAnteriorActionPerformed
 
     private void botonMoverAEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMoverAEquipoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_botonMoverAEquipoActionPerformed
 
     private void botonCajaPosteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCajaPosteriorActionPerformed
-        // TODO add your handling code here:
+        if (this.cajaSeleccion < this.pc.getCajas().size() - 1) {
+            this.cajaSeleccion++;
+        }
+        actualizarLista();
+        textoCaja.setText("Caja: " + (this.cajaSeleccion + 1));
     }//GEN-LAST:event_botonCajaPosteriorActionPerformed
 
     private void botonCambiarPosicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCambiarPosicionActionPerformed
@@ -232,7 +239,9 @@ public class VentanaPC extends javax.swing.JFrame {
     }//GEN-LAST:event_tabsStateChanged
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        this.cajaSeleccion = 0;
         actualizarLista();
+        textoCaja.setText("Caja: " + (this.cajaSeleccion + 1));
     }//GEN-LAST:event_formWindowActivated
 
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
@@ -242,7 +251,7 @@ public class VentanaPC extends javax.swing.JFrame {
     }//GEN-LAST:event_jList1ValueChanged
 
     private void actualizarLista() {
-        ArrayList<Pokemon> pokemones = pc.getCajas().get(0).getPokemones();
+        ArrayList<Pokemon> pokemones = pc.getCajas().get(this.cajaSeleccion).getPokemones();
         String[] elementos = new String[30];
         for (int i = 0; i < 30; i++) {
             elementos[i] = (pokemones.get(i) != null) ? pokemones.get(i).toString() : "Espacio vacío";
