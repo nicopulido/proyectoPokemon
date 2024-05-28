@@ -92,7 +92,9 @@ public class Tests {
         }
         // Mostrar el equipo
         
+        PC pc = new PC(cajas, equipo, mochila);
         
+        /*
         caja1.soltar_Pokemon(0);
         caja1.soltar_Pokemon(1);
         caja1.soltar_Pokemon(4);
@@ -115,7 +117,7 @@ public class Tests {
         System.out.println(equipo);
         System.out.println(caja1);
         
-        
+        */
         
         
         

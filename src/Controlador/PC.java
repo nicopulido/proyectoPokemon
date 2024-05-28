@@ -5,6 +5,7 @@ import Modelo.EquipoPokemon;
 import Modelo.Mochila;
 import Modelo.Objeto;
 import Modelo.Pokemon;
+import Vista.Vista;
 import java.util.ArrayList;
 
 
@@ -20,6 +21,7 @@ public class PC {
     private EquipoPokemon equipoPokemon;
     private Objeto objeto;
     private Mochila mochila;
+    private Vista vista;
     
     
     //constructores
@@ -30,6 +32,17 @@ public class PC {
             Caja caja = new Caja();
             this.cajas.add(caja);
         }
+    }
+    //constructor solo para pruebas
+    public PC(Caja[] cajas, EquipoPokemon equipoPokemon, Mochila mochila){
+        this.equipoPokemon = equipoPokemon;
+        this.mochila = mochila;
+        this.cajas = new ArrayList<>();
+        for(Caja caja : cajas ){
+            this.cajas.add(caja);
+        }
+        this.vista = new Vista(this);
+        this.vista.getVentana().setVisible(true);
     }
 
     public PC(ArrayList<Caja> cajas, ArrayList<Objeto> objetos) {
