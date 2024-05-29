@@ -64,6 +64,8 @@ public class Caja {
                 // Si la posición está vacía, agregar el Pokémon en esa posición
                 this.pokemones.set(posicion, pokemon);
                 System.out.println("Se agregó el Pokémon en la posición " + posicion);
+            } else if (pokemon == null) {
+                this.pokemones.set(posicion, pokemon);
             } else {
                 System.out.println("La posición " + posicion + " está ocupada por otro Pokémon.");
             }
@@ -137,8 +139,11 @@ public class Caja {
             System.out.println("No hay ningún pokemón en la posición " + posicion + " de la caja");
         }
     }
-    
-    
+
+    public Pokemon obtenerPokemonEnPosicion(int posicion) {
+        return this.pokemones.get(posicion);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

@@ -60,22 +60,21 @@ public class PC {
     }
 
     //netodos
-    public void almacenar_Pokemon() {
-    	pokemonSeleccionado.setA(true);
-    }
-
-    public void eliminar_Pokemon() {
-    	pokemonSeleccionado.setA(false);
-    }
-
-    public void almacenar_Objeto(Objeto objeto) {
-    	objetos.add(objeto);
-    }
-
-    public void eliminar_Objeto(Objeto objeto) {
-    	objetos.remove(objeto);
-    	
+    
+    public void cambiarPokemondeCaja(int indexPokemonSalida, int indexPokemonLlegada, int numeroCajaSalida, int numeroCajaLlegada){
+        Caja cajaSalida = this.cajas.get(numeroCajaSalida);
+        Caja cajaLlegada = this.cajas.get(numeroCajaLlegada);
+        Pokemon pokemonSalida = cajaSalida.obtenerPokemonEnPosicion(indexPokemonSalida);
+        Pokemon pokemonLlegada = cajaLlegada.obtenerPokemonEnPosicion(indexPokemonLlegada);
+        cajaSalida.soltar_Pokemon(indexPokemonSalida);
+        cajaLlegada.soltar_Pokemon(indexPokemonLlegada);
+        cajaSalida.agregar_Pokemon(pokemonLlegada, indexPokemonSalida);
+        cajaLlegada.agregar_Pokemon(pokemonSalida, indexPokemonLlegada);
+        System.out.println(pokemonSalida);
+        System.out.println(pokemonLlegada);
     }
     
-    
+    public Pokemon obtenerPokemonEnPosicion(int numeroCaja,int posicionPokemon){
+        return this.cajas.get(numeroCaja).obtenerPokemonEnPosicion(posicionPokemon);
+    }
 }

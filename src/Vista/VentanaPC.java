@@ -15,11 +15,11 @@ import java.util.ArrayList;
 public class VentanaPC extends javax.swing.JFrame {
 
     private PC pc;
-    private Pokemon pokemonSeleccionado;
+    private int pokemonSeleccionado;
+    private int cajaSeleccionada;
     private int cajaSeleccion;
 
     public VentanaPC(PC pc) {
-        this.pokemonSeleccionado = null;
         this.pc = pc;
         initComponents();
     }
@@ -39,11 +39,13 @@ public class VentanaPC extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
         botonCajaAnterior = new javax.swing.JButton();
         botonCajaPosterior = new javax.swing.JButton();
+        textoCaja = new javax.swing.JLabel();
+        botonQuitarItem = new javax.swing.JButton();
         botonCambiarPosicion = new javax.swing.JButton();
         botonMoverAEquipo = new javax.swing.JButton();
         botonLiberar = new javax.swing.JButton();
-        botonQuitarItem = new javax.swing.JButton();
-        textoCaja = new javax.swing.JLabel();
+        botonMover = new javax.swing.JButton();
+        infoPokemonSeleccionado = new javax.swing.JLabel();
         panelEquipo = new javax.swing.JPanel();
         panelMochial = new javax.swing.JPanel();
 
@@ -54,6 +56,8 @@ public class VentanaPC extends javax.swing.JFrame {
             }
         });
 
+        tabs.setMaximumSize(new java.awt.Dimension(30000, 30000));
+        tabs.setPreferredSize(new java.awt.Dimension(500, 418));
         tabs.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 tabsStateChanged(evt);
@@ -61,6 +65,8 @@ public class VentanaPC extends javax.swing.JFrame {
         });
 
         panelPC.setForeground(new java.awt.Color(0, 0, 0));
+        panelPC.setMaximumSize(new java.awt.Dimension(20000, 20000));
+        panelPC.setPreferredSize(new java.awt.Dimension(500, 418));
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -88,6 +94,13 @@ public class VentanaPC extends javax.swing.JFrame {
             }
         });
 
+        botonQuitarItem.setText("Quitar item");
+        botonQuitarItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonQuitarItemActionPerformed(evt);
+            }
+        });
+
         botonCambiarPosicion.setText("Cambiar posicion");
         botonCambiarPosicion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,55 +122,67 @@ public class VentanaPC extends javax.swing.JFrame {
             }
         });
 
-        botonQuitarItem.setText("Quitar item");
-        botonQuitarItem.addActionListener(new java.awt.event.ActionListener() {
+        botonMover.setText("Mover");
+        botonMover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonQuitarItemActionPerformed(evt);
+                botonMoverActionPerformed(evt);
             }
         });
+
+        infoPokemonSeleccionado.setForeground(new java.awt.Color(255, 0, 0));
+        infoPokemonSeleccionado.setText("Pokemon seleccionado: Magikarp");
 
         javax.swing.GroupLayout panelPCLayout = new javax.swing.GroupLayout(panelPC);
         panelPC.setLayout(panelPCLayout);
         panelPCLayout.setHorizontalGroup(
             panelPCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPCLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(panelPCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(30, Short.MAX_VALUE)
+                .addGroup(panelPCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelPCLayout.createSequentialGroup()
                         .addComponent(botonCajaAnterior)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(81, 81, 81)
                         .addComponent(textoCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonCajaPosterior))
-                    .addGroup(panelPCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1)
-                        .addGroup(panelPCLayout.createSequentialGroup()
-                            .addComponent(botonCambiarPosicion)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(botonMoverAEquipo)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(botonLiberar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(botonQuitarItem))))
-                .addGap(46, 46, 46))
+                    .addComponent(jScrollPane1)
+                    .addGroup(panelPCLayout.createSequentialGroup()
+                        .addComponent(botonMoverAEquipo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonLiberar)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonCambiarPosicion)
+                        .addGap(12, 12, 12)
+                        .addComponent(botonQuitarItem))
+                    .addGroup(panelPCLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(infoPokemonSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(botonMover)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         panelPCLayout.setVerticalGroup(
             panelPCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPCLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
+            .addGroup(panelPCLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(textoCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelPCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonCajaPosterior)
                     .addComponent(botonCajaAnterior)
-                    .addComponent(textoCaja))
-                .addGap(18, 18, 18)
+                    .addComponent(botonCajaPosterior))
+                .addGap(8, 8, 8)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelPCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonCambiarPosicion)
                     .addComponent(botonMoverAEquipo)
                     .addComponent(botonLiberar)
+                    .addComponent(botonCambiarPosicion)
                     .addComponent(botonQuitarItem))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelPCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(infoPokemonSeleccionado, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonMover))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabs.addTab("PC", panelPC);
@@ -170,7 +195,7 @@ public class VentanaPC extends javax.swing.JFrame {
         );
         panelEquipoLayout.setVerticalGroup(
             panelEquipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addGap(0, 418, Short.MAX_VALUE)
         );
 
         tabs.addTab("Equipo Pokemon", panelEquipo);
@@ -183,7 +208,7 @@ public class VentanaPC extends javax.swing.JFrame {
         );
         panelMochialLayout.setVerticalGroup(
             panelMochialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addGap(0, 418, Short.MAX_VALUE)
         );
 
         tabs.addTab("Mochila", panelMochial);
@@ -192,47 +217,15 @@ public class VentanaPC extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabs)
+            .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabs)
+            .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void botonCajaAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCajaAnteriorActionPerformed
-        if (this.cajaSeleccion > 0) {
-            this.cajaSeleccion--;
-        }
-        actualizarLista();
-        textoCaja.setText("Caja: " + (this.cajaSeleccion + 1));
-    }//GEN-LAST:event_botonCajaAnteriorActionPerformed
-
-    private void botonMoverAEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMoverAEquipoActionPerformed
-
-    }//GEN-LAST:event_botonMoverAEquipoActionPerformed
-
-    private void botonCajaPosteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCajaPosteriorActionPerformed
-        if (this.cajaSeleccion < this.pc.getCajas().size() - 1) {
-            this.cajaSeleccion++;
-        }
-        actualizarLista();
-        textoCaja.setText("Caja: " + (this.cajaSeleccion + 1));
-    }//GEN-LAST:event_botonCajaPosteriorActionPerformed
-
-    private void botonCambiarPosicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCambiarPosicionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonCambiarPosicionActionPerformed
-
-    private void botonLiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLiberarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonLiberarActionPerformed
-
-    private void botonQuitarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQuitarItemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonQuitarItemActionPerformed
 
     private void tabsStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabsStateChanged
 
@@ -242,13 +235,59 @@ public class VentanaPC extends javax.swing.JFrame {
         this.cajaSeleccion = 0;
         actualizarLista();
         textoCaja.setText("Caja: " + (this.cajaSeleccion + 1));
+        botonMover.setVisible(false);
+        infoPokemonSeleccionado.setVisible(false);
     }//GEN-LAST:event_formWindowActivated
+
+    private void botonCajaPosteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCajaPosteriorActionPerformed
+        if (this.cajaSeleccion < this.pc.getCajas().size() - 1) {
+            this.cajaSeleccion++;
+        }
+        actualizarLista();
+        textoCaja.setText("Caja: " + (this.cajaSeleccion + 1));
+    }//GEN-LAST:event_botonCajaPosteriorActionPerformed
+
+    private void botonCajaAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCajaAnteriorActionPerformed
+        if (this.cajaSeleccion > 0) {
+            this.cajaSeleccion--;
+        }
+        actualizarLista();
+        textoCaja.setText("Caja: " + (this.cajaSeleccion + 1));
+    }//GEN-LAST:event_botonCajaAnteriorActionPerformed
 
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
         if (!evt.getValueIsAdjusting()) {
             int index = jList1.getSelectedIndex();
         }
     }//GEN-LAST:event_jList1ValueChanged
+
+    private void botonCambiarPosicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCambiarPosicionActionPerformed
+        Pokemon pokemon = this.pc.obtenerPokemonEnPosicion(cajaSeleccion,jList1.getSelectedIndex());
+        this.pokemonSeleccionado = jList1.getSelectedIndex();
+        this.cajaSeleccionada = this.cajaSeleccion;
+        infoPokemonSeleccionado.setText("Pokemon seleccionado: " + pokemon.getNombre());
+        botonMover.setVisible(true);
+        infoPokemonSeleccionado.setVisible(true);
+    }//GEN-LAST:event_botonCambiarPosicionActionPerformed
+
+    private void botonMoverAEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMoverAEquipoActionPerformed
+        
+    }//GEN-LAST:event_botonMoverAEquipoActionPerformed
+
+    private void botonLiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLiberarActionPerformed
+
+    }//GEN-LAST:event_botonLiberarActionPerformed
+
+    private void botonQuitarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQuitarItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonQuitarItemActionPerformed
+
+    private void botonMoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMoverActionPerformed
+        this.pc.cambiarPokemondeCaja(this.pokemonSeleccionado, jList1.getSelectedIndex(), this.cajaSeleccionada, this.cajaSeleccion);
+        botonMover.setVisible(false);
+        infoPokemonSeleccionado.setVisible(false);
+        actualizarLista();
+    }//GEN-LAST:event_botonMoverActionPerformed
 
     private void actualizarLista() {
         ArrayList<Pokemon> pokemones = pc.getCajas().get(this.cajaSeleccion).getPokemones();
@@ -265,8 +304,10 @@ public class VentanaPC extends javax.swing.JFrame {
     private javax.swing.JButton botonCajaPosterior;
     private javax.swing.JButton botonCambiarPosicion;
     private javax.swing.JButton botonLiberar;
+    private javax.swing.JButton botonMover;
     private javax.swing.JButton botonMoverAEquipo;
     private javax.swing.JButton botonQuitarItem;
+    private javax.swing.JLabel infoPokemonSeleccionado;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel panelEquipo;
