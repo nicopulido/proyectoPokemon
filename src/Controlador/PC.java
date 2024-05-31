@@ -16,12 +16,10 @@ import java.util.ArrayList;
 public class PC {
 
     private ArrayList<Caja> cajas;
-    private ArrayList<Objeto> objetos;
-    private Pokemon pokemonSeleccionado;
     private EquipoPokemon equipoPokemon;
-    private Objeto objeto;
     private Mochila mochila;
     private Vista vista;
+    private Reproductor reproductor;
     
     
     //constructores
@@ -35,6 +33,9 @@ public class PC {
     }
     //constructor solo para pruebas
     public PC(Caja[] cajas, EquipoPokemon equipoPokemon, Mochila mochila){
+        this.reproductor = new Reproductor();
+        this.reproductor.cargarSonido("src/Banda Sonora/Pueblo Terracota - OST .wav");
+        this.reproductor.reproducirLoop();
         this.equipoPokemon = equipoPokemon;
         this.mochila = mochila;
         this.cajas = new ArrayList<>();
@@ -47,7 +48,6 @@ public class PC {
 
     public PC(ArrayList<Caja> cajas, ArrayList<Objeto> objetos) {
         this.cajas = cajas;
-        this.objetos = objetos;
     }
 
     //Getter and Setter
@@ -86,6 +86,22 @@ public class PC {
     public void quitarObjetoPokemonCaja(int numeroCaja, int posicionPokemon){
         Caja caja = this.cajas.get(numeroCaja);
         caja.quitarObjetoPokemon(posicionPokemon, this.mochila);
+    }
+
+    public EquipoPokemon getEquipoPokemon() {
+        return equipoPokemon;
+    }
+
+    public void setEquipoPokemon(EquipoPokemon equipoPokemon) {
+        this.equipoPokemon = equipoPokemon;
+    }
+
+    public Mochila getMochila() {
+        return mochila;
+    }
+
+    public void setMochila(Mochila mochila) {
+        this.mochila = mochila;
     }
     
 }
