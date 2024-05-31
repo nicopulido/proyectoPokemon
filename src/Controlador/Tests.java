@@ -91,6 +91,14 @@ public class Tests {
             equipo.agregar_Pokemon(pokemons[randomIndex], i);
         }
         // Mostrar el equipo
+        mochila.agregarObjeto(huevo);
+        mochila.agregarObjeto(pokeball);
+        mochila.agregarObjeto(poción);
+        mochila.agregarObjeto(superpoción);
+        mochila.agregarObjeto(baya);
+        mochila.agregarObjeto(piedra);
+        
+        pikachu.setObjeto(pokeball);
         
         PC pc = new PC(cajas, equipo, mochila);
         

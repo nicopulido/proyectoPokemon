@@ -141,7 +141,7 @@ public class VentanaPC extends javax.swing.JFrame {
                 .addGroup(panelPCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelPCLayout.createSequentialGroup()
                         .addComponent(botonCajaAnterior)
-                        .addGap(81, 81, 81)
+                        .addGap(90, 90, 90)
                         .addComponent(textoCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(botonCajaPosterior))
@@ -164,12 +164,11 @@ public class VentanaPC extends javax.swing.JFrame {
         panelPCLayout.setVerticalGroup(
             panelPCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPCLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(textoCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(25, 25, 25)
                 .addGroup(panelPCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonCajaAnterior)
-                    .addComponent(botonCajaPosterior))
+                    .addComponent(botonCajaPosterior)
+                    .addComponent(textoCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(8, 8, 8)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -262,7 +261,7 @@ public class VentanaPC extends javax.swing.JFrame {
     }//GEN-LAST:event_jList1ValueChanged
 
     private void botonCambiarPosicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCambiarPosicionActionPerformed
-        Pokemon pokemon = this.pc.obtenerPokemonEnPosicion(cajaSeleccion,jList1.getSelectedIndex());
+        Pokemon pokemon = this.pc.obtenerPokemonEnPosicion(cajaSeleccion, jList1.getSelectedIndex());
         this.pokemonSeleccionado = jList1.getSelectedIndex();
         this.cajaSeleccionada = this.cajaSeleccion;
         infoPokemonSeleccionado.setText("Pokemon seleccionado: " + pokemon.getNombre());
@@ -271,15 +270,17 @@ public class VentanaPC extends javax.swing.JFrame {
     }//GEN-LAST:event_botonCambiarPosicionActionPerformed
 
     private void botonMoverAEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMoverAEquipoActionPerformed
-        
+
     }//GEN-LAST:event_botonMoverAEquipoActionPerformed
 
     private void botonLiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonLiberarActionPerformed
-
+        this.pc.soltarPokemon(this.cajaSeleccion, jList1.getSelectedIndex());
+        this.actualizarLista();
     }//GEN-LAST:event_botonLiberarActionPerformed
 
     private void botonQuitarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQuitarItemActionPerformed
-        // TODO add your handling code here:
+        this.pc.quitarObjetoPokemonCaja(this.cajaSeleccion, jList1.getSelectedIndex());
+        actualizarLista();
     }//GEN-LAST:event_botonQuitarItemActionPerformed
 
     private void botonMoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMoverActionPerformed
@@ -293,7 +294,7 @@ public class VentanaPC extends javax.swing.JFrame {
         ArrayList<Pokemon> pokemones = pc.getCajas().get(this.cajaSeleccion).getPokemones();
         String[] elementos = new String[30];
         for (int i = 0; i < 30; i++) {
-            elementos[i] = (pokemones.get(i) != null) ? pokemones.get(i).toString() : "Espacio vacío";
+            elementos[i] = (pokemones.get(i) != null) ? i + ". " + pokemones.get(i).toString() : i + ". " + "Espacio vacío";
         }
         jList1.setListData(elementos);
     }

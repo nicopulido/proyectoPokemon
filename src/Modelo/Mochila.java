@@ -45,5 +45,9 @@ public class Mochila {
     public void eliminarObjeto(int posicionObjeto) {
         this.objetos.remove(posicionObjeto);
     }
+    
+    public void agregarObjeto(Objeto objeto){
+        this.objetos.add(objeto);
+    }
 
 }

@@ -82,7 +82,18 @@ public class Pokemon {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(nombre);
+        sb.append(nombre).append(" |");
+        sb.append(" Nivel: ").append(this.nivel).append(" |");
+
+        if (this.objeto == null) {
+            sb.append(" Objeto: No tiene |");
+        } else {
+            sb.append(" Objeto: ").append(this.objeto).append(" |");
+        }
+
+        sb.append(" Altura: ").append(this.altura).append(" |");
+        sb.append(" Peso: ").append(this.peso).append(" |");
+
         return sb.toString();
     }
 

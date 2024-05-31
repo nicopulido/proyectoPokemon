@@ -77,4 +77,15 @@ public class PC {
     public Pokemon obtenerPokemonEnPosicion(int numeroCaja,int posicionPokemon){
         return this.cajas.get(numeroCaja).obtenerPokemonEnPosicion(posicionPokemon);
     }
+    
+    public void soltarPokemon(int numeroCaja, int posicionPokemon){
+        Caja caja = this.cajas.get(numeroCaja);
+        caja.soltar_Pokemon(posicionPokemon);
+    }
+    
+    public void quitarObjetoPokemonCaja(int numeroCaja, int posicionPokemon){
+        Caja caja = this.cajas.get(numeroCaja);
+        caja.quitarObjetoPokemon(posicionPokemon, this.mochila);
+    }
+    
 }
