@@ -139,6 +139,10 @@ public class EquipoPokemon {
             System.out.println("La posición en la caja no es valida");
         }
     }
+    
+    public Pokemon obtenerPokemonPosicion(int posicionPokemon){
+        return this.pokemones.get(posicionPokemon);
+    }
 
     @Override
     public String toString() {
