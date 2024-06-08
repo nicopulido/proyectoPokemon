@@ -120,5 +120,14 @@ public class PC {
     public void setMochila(Mochila mochila) {
         this.mochila = mochila;
     }
+    
+    public void darObjetoCaja(int posicionObjeto, int posicionPokemon,int indexCaja){
+        Caja caja = this.cajas.get(indexCaja);
+        this.mochila.darObjetoPokemonCaja(posicionObjeto,posicionPokemon, caja);
+    }
+    
+    public void darObjetoEquipo(int posicionObjeto, int posicionPokemon){
+        this.mochila.darObjetoPokemonEquipo(posicionObjeto, posicionPokemon, this.equipoPokemon);
+    }
 
 }

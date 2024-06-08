@@ -26,7 +26,7 @@ public class Mochila {
         Objeto objeto = this.objetos.get(posicionObjeto);
         if (posicionObjeto >= 0 && posicionObjeto < this.objetos.size()) {
             equipoPokemon.darObjetoPokemon(objeto, posicionPokemon);
-            this.objetos.set(posicionObjeto, null);
+            this.objetos.remove(posicionObjeto);
         } else {
             System.out.println("Posición del objeto invalida");
         }
@@ -36,7 +36,7 @@ public class Mochila {
         Objeto objeto = this.objetos.get(posicionObjeto);
         if (posicionObjeto >= 0 && posicionObjeto < this.objetos.size()) {
             caja.darObjetoPokemon(objeto, posicionPokemon);
-            this.objetos.set(posicionObjeto, null);
+            this.objetos.remove(posicionObjeto);
         } else {
             System.out.println("Posición del objeto invalida");
         }
@@ -45,8 +45,8 @@ public class Mochila {
     public void eliminarObjeto(int posicionObjeto) {
         this.objetos.remove(posicionObjeto);
     }
-    
-    public void agregarObjeto(Objeto objeto){
+
+    public void agregarObjeto(Objeto objeto) {
         this.objetos.add(objeto);
     }
 

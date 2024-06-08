@@ -20,6 +20,8 @@ public class VentanaPC extends javax.swing.JFrame {
     private int pokemonSeleccionadoEquipo;
     private int cajaSeleccionada;
     private int cajaActual;
+    private int indexObjetoSeleccionado;
+    private boolean objetoSeleccionado;
     private boolean moverEquipoCaja;
 
     public VentanaPC(PC pc) {
@@ -62,6 +64,8 @@ public class VentanaPC extends javax.swing.JFrame {
         panelMochial = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jListObjetos = new javax.swing.JList<>();
+        botonDarEquipo = new javax.swing.JButton();
+        botonDarCaja = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -136,7 +140,7 @@ public class VentanaPC extends javax.swing.JFrame {
             }
         });
 
-        botonMoverPC.setText("Mover");
+        botonMoverPC.setText("Ok");
         botonMoverPC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonMoverPCActionPerformed(evt);
@@ -243,7 +247,7 @@ public class VentanaPC extends javax.swing.JFrame {
         infoPokemonSeleccionadoEquipo.setForeground(new java.awt.Color(255, 0, 0));
         infoPokemonSeleccionadoEquipo.setText("Pokemon seleccionado: Magikarp");
 
-        botonMoverEquipo.setText("Mover");
+        botonMoverEquipo.setText("Ok");
         botonMoverEquipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonMoverEquipoActionPerformed(evt);
@@ -306,21 +310,45 @@ public class VentanaPC extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jListObjetos);
 
+        botonDarEquipo.setText("Dar a equipo");
+        botonDarEquipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonDarEquipoActionPerformed(evt);
+            }
+        });
+
+        botonDarCaja.setText("Dar a caja");
+        botonDarCaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonDarCajaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelMochialLayout = new javax.swing.GroupLayout(panelMochial);
         panelMochial.setLayout(panelMochialLayout);
         panelMochialLayout.setHorizontalGroup(
             panelMochialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMochialLayout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
+            .addGroup(panelMochialLayout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(botonDarEquipo)
+                .addGap(95, 95, 95)
+                .addComponent(botonDarCaja)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelMochialLayout.setVerticalGroup(
             panelMochialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMochialLayout.createSequentialGroup()
-                .addContainerGap(72, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
+                .addGroup(panelMochialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonDarEquipo)
+                    .addComponent(botonDarCaja))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         tabs.addTab("Mochila", panelMochial);
@@ -410,6 +438,8 @@ public class VentanaPC extends javax.swing.JFrame {
     private void botonMoverPCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMoverPCActionPerformed
         if (this.moverEquipoCaja) {
             this.pc.moverCajaEquipo(this.cajaActual, jList1.getSelectedIndex(), this.pokemonSeleccionadoEquipo);
+        } else if (this.objetoSeleccionado) {
+            pc.darObjetoCaja(this.indexObjetoSeleccionado, jList1.getSelectedIndex(),this.cajaActual);
         } else {
             this.pc.cambiarPokemondeCaja(this.pokemonSeleccionadoCaja, jList1.getSelectedIndex(), this.cajaSeleccionada, this.cajaActual);
         }
@@ -451,15 +481,36 @@ public class VentanaPC extends javax.swing.JFrame {
     private void botonMoverEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMoverEquipoActionPerformed
         if (this.moverEquipoCaja) {
             pc.moverCajaEquipo(this.cajaSeleccionada, this.pokemonSeleccionadoCaja, jListEquipoPokemon.getSelectedIndex());
+        } else if (this.objetoSeleccionado) {
+            pc.darObjetoEquipo(this.indexObjetoSeleccionado, jListEquipoPokemon.getSelectedIndex());
         } else {
             System.out.println("no se mueven");
             pc.moverPosicionEquipo(jListEquipoPokemon.getSelectedIndex(), this.pokemonSeleccionadoEquipo);
         }
+        this.objetoSeleccionado = false;
         this.moverEquipoCaja = false;
         botonMoverEquipo.setVisible(false);
         infoPokemonSeleccionadoEquipo.setVisible(false);
         this.actualizarListas();
     }//GEN-LAST:event_botonMoverEquipoActionPerformed
+
+    private void botonDarEquipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDarEquipoActionPerformed
+        if (!moverEquipoCaja) {
+            this.indexObjetoSeleccionado = jListObjetos.getSelectedIndex();
+            this.objetoSeleccionado = true;
+        }
+        tabs.setSelectedIndex(tabs.indexOfComponent(panelEquipo));
+        this.botonMoverEquipo.setVisible(true);
+    }//GEN-LAST:event_botonDarEquipoActionPerformed
+
+    private void botonDarCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonDarCajaActionPerformed
+        if (!moverEquipoCaja) {
+            this.indexObjetoSeleccionado = jListObjetos.getSelectedIndex();
+            this.objetoSeleccionado = true;
+        }
+        tabs.setSelectedIndex(tabs.indexOfComponent(panelPC));
+        this.botonMoverPC.setVisible(true);
+    }//GEN-LAST:event_botonDarCajaActionPerformed
 
     private void actualizarListas() {
         ArrayList<Pokemon> pokemones = pc.getCajas().get(this.cajaActual).getPokemones();
@@ -492,6 +543,8 @@ public class VentanaPC extends javax.swing.JFrame {
     private javax.swing.JButton botonCajaPosterior;
     private javax.swing.JButton botonCambiarPosicion;
     private javax.swing.JButton botonCambiarPosicionEquipo;
+    private javax.swing.JButton botonDarCaja;
+    private javax.swing.JButton botonDarEquipo;
     private javax.swing.JButton botonLiberar;
     private javax.swing.JButton botonLiberarEquipo;
     private javax.swing.JButton botonMoverACaja;
